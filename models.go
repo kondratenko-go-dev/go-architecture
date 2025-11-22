@@ -10,6 +10,7 @@ type Address struct {
 }
 
 type Person struct {
+	id   int64
 	name string
 	age  int
 	addr Address
@@ -33,11 +34,11 @@ func NewPerson(name string, age int, city, street string) (*Person, error) {
 	}
 
 	return &Person{
-		name,
-		age,
-		Address{
-			city,
-			street,
+		name: name,
+		age:  age,
+		addr: Address{
+			City:   city,
+			Street: street,
 		},
 	}, nil
 }
@@ -81,6 +82,8 @@ func (p *Person) SetStreet(street string) error {
 	p.addr.Street = street
 	return nil
 }
+
+func (p *Person) ID() int64 { return p.id }
 
 func (p *Person) Greet() {
 	fmt.Printf("\nMy name is %s, I am %d years is old and I live in %s, %s.\n",
