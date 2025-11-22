@@ -10,9 +10,9 @@ type Address struct {
 }
 
 type Person struct {
-	id   int64
-	name string
-	age  int
+	id      int64
+	name    string
+	age     int
 	address Address
 }
 
@@ -63,23 +63,23 @@ func (p *Person) SetAge(age int) error {
 	return nil
 }
 
-func (p *Person) City() string { return p.addr.City }
+func (p *Person) City() string { return p.address.City }
 
 func (p *Person) SetCity(city string) error {
 	if city == "" {
 		return errors.New("city is empty")
 	}
-	p.addr.City = city
+	p.address.City = city
 	return nil
 }
 
-func (p *Person) Street() string { return p.addr.Street }
+func (p *Person) Street() string { return p.address.Street }
 
 func (p *Person) SetStreet(street string) error {
 	if street == "" {
 		return errors.New("street is empty")
 	}
-	p.addr.Street = street
+	p.address.Street = street
 	return nil
 }
 
@@ -87,6 +87,6 @@ func (p *Person) ID() int64 { return p.id }
 
 func (p *Person) Greet() {
 	fmt.Printf("\nMy name is %s, I am %d years old and I live in %s, %s.\n",
-		p.name, p.age, p.addr.City, p.addr.Street,
+		p.name, p.age, p.address.City, p.address.Street,
 	)
 }
