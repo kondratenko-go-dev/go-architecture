@@ -13,30 +13,30 @@ type Person struct {
 	id   int64
 	name string
 	age  int
-	addr Address
+	address Address
 }
 
 func NewPerson(name string, age int, city, street string) (*Person, error) {
 	if name == "" {
-		return nil, errors.New("name is empty")
+		return nil, errors.New("name cannot be empty")
 	}
 
 	if age <= 0 {
-		return nil, errors.New("age is too low")
+		return nil, errors.New("age must be greater than zero")
 	}
 
 	if city == "" {
-		return nil, errors.New("city is empty")
+		return nil, errors.New("city cannot be empty")
 	}
 
 	if street == "" {
-		return nil, errors.New("street is empty")
+		return nil, errors.New("street cannot be empty")
 	}
 
 	return &Person{
 		name: name,
 		age:  age,
-		addr: Address{
+		address: Address{
 			City:   city,
 			Street: street,
 		},
@@ -86,6 +86,7 @@ func (p *Person) SetStreet(street string) error {
 func (p *Person) ID() int64 { return p.id }
 
 func (p *Person) Greet() {
-	fmt.Printf("\nMy name is %s, I am %d years is old and I live in %s, %s.\n",
-		p.name, p.age, p.addr.City, p.addr.Street)
+	fmt.Printf("\nMy name is %s, I am %d years old and I live in %s, %s.\n",
+		p.name, p.age, p.addr.City, p.addr.Street,
+	)
 }
