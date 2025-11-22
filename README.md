@@ -21,5 +21,5 @@ The goal of the project is to gradually move toward an architecture similar to r
 
 In the project root:
 
-```bash 
+```bash
 go run .
