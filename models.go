@@ -86,7 +86,7 @@ func (p *Person) SetStreet(street string) error {
 func (p *Person) ID() int64 { return p.id }
 
 func (p *Person) Greet() {
-	fmt.Printf("\nMy name is %s, I am %d years old and I live in %s, %s.\n",
-		p.name, p.age, p.address.City, p.address.Street,
+	fmt.Printf("\n[%d] My name is %s, I am %d years old and I live in %s, %s.\n",
+		p.id, p.name, p.age, p.address.City, p.address.Street,
 	)
 }
