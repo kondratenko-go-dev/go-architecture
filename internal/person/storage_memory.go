@@ -1,19 +1,15 @@
-package main
+package person
 
 type MemoryPersonStorage struct {
 	persons []*Person
 	nextID  int64
 }
 
-func NewMemoryPersonStorage() *MemoryPersonStorage {
+func NewMemoryStorage() *MemoryPersonStorage {
 	return &MemoryPersonStorage{
 		persons: make([]*Person, 0),
 		nextID:  1,
 	}
-}
-
-func (s *MemoryPersonStorage) GetAll() ([]*Person, error) {
-	return s.persons, nil
 }
 
 func (s *MemoryPersonStorage) Save(person *Person) error {
@@ -23,13 +19,17 @@ func (s *MemoryPersonStorage) Save(person *Person) error {
 	return nil
 }
 
+func (s *MemoryPersonStorage) GetAll() ([]*Person, error) {
+	return s.persons, nil
+}
+
 func (s *MemoryPersonStorage) FindByID(id int64) (*Person, error) {
 	for _, p := range s.persons {
 		if p.id == id {
 			return p, nil
 		}
 	}
-	return nil, ErrPersonNotFound
+	return nil, ErrNotFound
 }
 
 func (s *MemoryPersonStorage) Delete(id int64) error {
@@ -39,7 +39,7 @@ func (s *MemoryPersonStorage) Delete(id int64) error {
 			return nil
 		}
 	}
-	return ErrPersonNotFound
+	return ErrNotFound
 }
 
 func (s *MemoryPersonStorage) FindByName(name string) ([]*Person, error) {
@@ -59,5 +59,5 @@ func (s *MemoryPersonStorage) Update(person *Person) error {
 			return nil
 		}
 	}
-	return ErrPersonNotFound
+	return ErrNotFound
 }
