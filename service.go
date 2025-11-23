@@ -23,6 +23,14 @@ func (s *PersonService) ListPeople() ([]*Person, error) {
 	return s.storage.GetAll()
 }
 
+func (s *PersonService) GetPerson(id int64) (*Person, error) {
+	return s.storage.FindByID(id)
+}
+
+func (s *PersonService) DeletePerson(id int64) error {
+	return s.storage.Delete(id)
+}
+
 func PrintGreeting(greeter []Greeter) {
 	for _, g := range greeter {
 		g.Greet()
