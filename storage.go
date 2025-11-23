@@ -41,3 +41,23 @@ func (s *MemoryPersonStorage) Delete(id int64) error {
 	}
 	return ErrPersonNotFound
 }
+
+func (s *MemoryPersonStorage) FindByName(name string) ([]*Person, error) {
+	result := make([]*Person, 0)
+	for _, p := range s.persons {
+		if p.name == name {
+			result = append(result, p)
+		}
+	}
+	return result, nil
+}
+
+func (s *MemoryPersonStorage) Update(person *Person) error {
+	for i, p := range s.persons {
+		if p.id == person.id {
+			s.persons[i] = person
+			return nil
+		}
+	}
+	return ErrPersonNotFound
+}
