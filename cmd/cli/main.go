@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/kondratenko-go-dev/go-architecture/internal/person"
 )
 
 func main() {
 
-	storage := NewMemoryPersonStorage()
-	service := NewPersonService(storage)
+	storage := person.NewMemoryStorage()
+	service := person.NewService(storage)
 
 	user, err := readLine("How many users need to be added: ")
 	if err != nil {
